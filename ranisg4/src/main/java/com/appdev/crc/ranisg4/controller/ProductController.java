@@ -14,29 +14,34 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
+
     @PostMapping
     public Product createProduct(@RequestBody Product product) {
-        return productService.saveProduct(product);
+        return productService.save(product);
     }
+
 
     @GetMapping
     public List<Product> getAllProducts() {
-        return productService.getAllProducts();
+        return productService.getAll();
     }
+
 
     @GetMapping("/{id}")
     public Product getProductById(@PathVariable Long id) {
-        return productService.getProductById(id);
+        return productService.getById(id);
     }
+
 
     @PutMapping("/{id}")
     public Product updateProduct(@PathVariable Long id, @RequestBody Product product) {
         product.setProductId(id);
-        return productService.saveProduct(product);
+        return productService.save(product);
     }
+
 
     @DeleteMapping("/{id}")
     public void deleteProduct(@PathVariable Long id) {
-        productService.deleteProduct(id);
+        productService.delete(id);
     }
 }
